@@ -1,0 +1,45 @@
+#!/usr/bin/env lua
+
+function sleep(sec)
+    -- A simple busy wait loop, because the brick might otherwise
+    -- freeze while sending. It's busy wait for portability.
+    local t0 = os.clock()
+    while os.clock() - t0 <= sec do end
+end
+
+
+function ReadSerial(serial_port)
+    local rserial = assert(io.open(serial_port, "r"))
+    local output
+
+    while true do
+        output = rserial:read()
+        if output == nil then break end
+        print(output)
+        rserial:flush()
+    end
+    print("NXT died, exiting...")
+end
+
+function SendScript(filename, serial_port)
+    local input_file = assert(io.open(filename, "r"))
+    local wserial = assert(io.open(serial_port, "w"))
+    while true do
+        local line = input_file:read()
+        if line == nil then break end
+        sleep(0.01)
+        wserial:write((line:gsub("^%s*(.-)%s*$", "%1")).."\n")
+    end
+    wserial:flush()
+    input_file:close()
+    wserial:close()
+end
+
+local serial_port = arg[2]
+
+print("Sending script to the NXT...")
+SendScript(arg[1], serial_port)
+SendScript("reactor.lua", serial_port)
+print("Done sending.")
+
+ReadSerial(serial_port)
