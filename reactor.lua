@@ -20,6 +20,7 @@ function EventLoop()
             end
             last_button = current_button
         end
+        MainLoop()
     end
 end
 

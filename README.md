@@ -49,6 +49,12 @@ The argument is the code of the button pressed.
 This function is called whenever a button is released on the NXT brick.
 The argument is the code of the button released.
 
+`MainLoop()`
+
+This function implements the main functionality of your program. It is
+run once per loop iteration, and will block the callbacks until it
+returns.
+
 ### Convenience functions
 
 The convenience functions defined are:
