@@ -1,5 +1,7 @@
-function Initialize()
+function Ready()
     nxt.DisplayClear()
+    -- Check that the Initialize function actually exists and run it.
+    if Initialize then Initialize() end
 end
 
 function Print(text)
@@ -14,16 +16,16 @@ function EventLoop()
         current_button = nxt.ButtonRead()
         if last_button ~= current_button then
             if current_button ~= 0 then
-                OnButtonPress(current_button)
+                if OnButtonPress then OnButtonPress(current_button) end
             else
-                OnButtonRelease(last_button)
+                if OnButtonRelease then OnButtonRelease(last_button) end
             end
             last_button = current_button
         end
-        MainLoop()
+        if MainLoop then MainLoop() end
     end
 end
 
-Initialize()
+Ready()
 Print("NXT ready!")
 EventLoop()
