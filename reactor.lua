@@ -1,5 +1,6 @@
 function Ready()
     nxt.DisplayClear()
+    Print("NXT ready!")
     -- Check that the Initialize function actually exists and run it.
     if Initialize then Initialize() end
 end
@@ -27,5 +28,4 @@ function EventLoop()
 end
 
 Ready()
-Print("NXT ready!")
 EventLoop()

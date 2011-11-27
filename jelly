@@ -7,7 +7,6 @@ function sleep(sec)
     while os.clock() - t0 <= sec do end
 end
 
-
 function ReadSerial(serial_port)
     local rserial = assert(io.open(serial_port, "r"))
     local output

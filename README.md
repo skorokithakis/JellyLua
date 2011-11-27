@@ -55,6 +55,11 @@ This function implements the main functionality of your program. It is
 run once per loop iteration, and will block the callbacks until it
 returns.
 
+`Initialize()`
+
+This allows for code initialization. It's called right before the event
+loop starts running.
+
 ### Convenience functions
 
 The convenience functions defined are:
