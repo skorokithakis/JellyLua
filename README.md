@@ -66,4 +66,4 @@ The convenience functions defined are:
 
 `Print(text)`
 
-Scroll the NXT LCD by one line and print the given text.
+Scroll the NXT LCD by one line and display the given text.
