@@ -26,12 +26,13 @@ function SendScript(filename, serial_port)
     while true do
         local line = input_file:read()
         if line == nil then break end
-        sleep(0.01)
+        sleep(0.03)
         wserial:write((string.gsub(line, "^%s*(.-)%s*$", "%1")).."\n")
     end
     wserial:flush()
     input_file:close()
     wserial:close()
+    sleep(0.05)
 end
 
 local serial_port = arg[2]
