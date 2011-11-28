@@ -60,6 +60,33 @@ returns.
 This allows for code initialization. It's called right before the event
 loop starts running.
 
+### Sensor definitions and callbacks
+
+If you use sensors in your script, JellyLua provides an easier way to
+work with them. You can define your sensors in the `SENSORS` variable
+and JellyLua will give you handy callbacks for them.
+
+Each key/value pair in the `SENSORS` variable must have the sensor's
+port as its key and a table of `{type=<sensor type>, mode=<mode>}` as
+its values. For example:
+
+    SENSORS = {
+        [1] = {type=1, mode=0x20}, 
+        [3] = {type=1, mode=0x40}, 
+    }
+
+This defines two touch sensors on ports 1 and 3, with the respective
+modes.
+
+The callbacks provided so far are:
+
+`TouchSensorEvent(port, value)`
+
+This callback is invoked whenever a touch sensor event is generated. An
+event is defined as pressing or releasing the sensor. `port` is the
+port the sensor fired on and `value` was the value that the sensor
+returned.
+
 ### Convenience functions
 
 The convenience functions defined are:
